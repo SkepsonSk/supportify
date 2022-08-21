@@ -1,21 +1,17 @@
-import {Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {Project} from "./project";
-import {User} from "./user";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Project } from './project';
 
 @Entity()
 export class Case {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
+  @Column()
+  name: string;
 
-    @Column()
-    content: string;
+  @Column()
+  content: string;
 
-    @ManyToOne( () => Project, project => project.cases)
-    project: Project
-
-    @ManyToMany( () => User, user => user.cases)
-    users: User[];
+  @ManyToOne(() => Project, (project) => project.cases)
+  project: Project;
 }

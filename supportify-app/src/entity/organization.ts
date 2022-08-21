@@ -1,14 +1,10 @@
-import {Column, Entity, ManyToMany, PrimaryGeneratedColumn} from "typeorm";
-import {User} from "./user";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Organization {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @Column()
-    name: string;
-
-    @ManyToMany( () => User, user => user.organizations)
-    users: User[];
+  @Column()
+  name: string;
 }
