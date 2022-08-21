@@ -1,5 +1,12 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Project } from './project';
+import { CaseAssignment } from './case-assignment';
 
 @Entity()
 export class Case {
@@ -14,4 +21,7 @@ export class Case {
 
   @ManyToOne(() => Project, (project) => project.cases)
   project: Project;
+
+  @OneToMany(() => CaseAssignment, (caseAssignment) => caseAssignment.case)
+  public caseAssignments: CaseAssignment[];
 }

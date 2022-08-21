@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { OrganizationAssignment } from './organization-assignment';
+import { Project } from './project';
 
 @Entity()
 export class Organization {
@@ -7,4 +9,13 @@ export class Organization {
 
   @Column()
   name: string;
+
+  @OneToMany(() => Project, (project) => project.organization)
+  projects: Project[];
+
+  @OneToMany(
+    () => OrganizationAssignment,
+    (organizationAssignment) => organizationAssignment.organization,
+  )
+  public organizationAssignments: OrganizationAssignment[];
 }
